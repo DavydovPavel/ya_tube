@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-3 mb-3 mt-1">
+            <div class="card"> {% include 'user.html' with post_count=post_count %}
+            </div>
+        </div>
+        <div class="col-md-9">
+            {% include "post_item.html" with post=post %}
+            {% include 'comments.html' with form=form items=post.comments.select_related %}
+        </div>
+    </div>
+</main>
+{% endblock %}

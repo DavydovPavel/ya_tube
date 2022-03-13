@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Авторы, на которых ты подписан{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% include "menu.html" with follow=True %}
+    <h2>Авторы, на которых ты подписан</h2>
+    {% load cache %}
+    {% cache 20 page_index page %}
+    {% for post in page %}
+
+    {% include "post_item.html" with post=post %}
+    {% endfor %}
+    {% endcache %}
+</div>
+
+
+{% if page.has_other_pages %}
+{% include "paginator.html" with items=page paginator=paginator%}
+{% endif %}
+
+{% endblock %}
